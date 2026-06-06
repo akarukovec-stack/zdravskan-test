@@ -34,11 +34,10 @@
     min-height: 100vh;
   }
 
-  /* SCREEN SYSTEM */
   .screen { display: none; min-height: 100vh; }
   .screen.active { display: flex; flex-direction: column; }
 
-  /* ═══ INTRO SCREEN ═══ */
+  /* ═══ INTRO ═══ */
   #intro {
     background: var(--dark);
     color: var(--cream);
@@ -49,7 +48,6 @@
     position: relative;
     overflow: hidden;
   }
-
   #intro::before {
     content: '';
     position: absolute;
@@ -66,540 +64,204 @@
     border: 1px solid rgba(201,168,76,0.1);
     bottom: -150px; left: -150px;
   }
+  .intro-brand { font-family:'Jost',sans-serif; font-size:11px; letter-spacing:4px; text-transform:uppercase; color:var(--gold); margin-bottom:32px; }
+  .intro-title { font-family:'Cormorant Garamond',serif; font-size:clamp(36px,8vw,56px); font-weight:400; line-height:1.15; color:var(--cream); margin-bottom:8px; }
+  .intro-title em { font-style:italic; color:var(--gold); }
+  .intro-sub { font-size:15px; color:rgba(247,243,236,0.55); margin-bottom:48px; font-weight:300; line-height:1.6; max-width:320px; margin-left:auto; margin-right:auto; }
+  .intro-features { display:flex; gap:24px; justify-content:center; margin-bottom:48px; flex-wrap:wrap; }
+  .intro-feature { font-size:13px; color:rgba(247,243,236,0.5); display:flex; align-items:center; gap:6px; }
+  .intro-feature::before { content:''; width:4px; height:4px; border-radius:50%; background:var(--gold); flex-shrink:0; }
+  .btn-start { background:var(--gold); color:var(--dark); border:none; padding:16px 48px; font-family:'Jost',sans-serif; font-size:14px; font-weight:600; letter-spacing:2px; text-transform:uppercase; cursor:pointer; border-radius:2px; transition:all 0.2s; position:relative; z-index:1; }
+  .btn-start:hover { background:var(--gold-light); transform:translateY(-1px); }
 
-  .intro-brand {
-    font-family: 'Jost', sans-serif;
-    font-size: 11px;
-    letter-spacing: 4px;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin-bottom: 32px;
+  /* ═══ TEST ═══ */
+  #test { background:var(--cream); flex-direction:column; }
+  .test-header { background:var(--dark); padding:20px 24px; display:flex; align-items:center; justify-content:space-between; }
+  .test-brand-sm { font-size:11px; letter-spacing:3px; text-transform:uppercase; color:var(--gold); }
+  .test-progress-wrap { display:flex; align-items:center; gap:10px; }
+  .test-progress-num { font-size:12px; color:rgba(247,243,236,0.5); min-width:40px; text-align:right; }
+  .test-progress-bar { width:120px; height:2px; background:rgba(255,255,255,0.1); border-radius:2px; overflow:hidden; }
+  .test-progress-fill { height:100%; background:var(--gold); border-radius:2px; transition:width 0.4s ease; }
+  .test-body { flex:1; padding:40px 24px; max-width:560px; margin:0 auto; width:100%; }
+  .question-num { font-size:11px; letter-spacing:3px; text-transform:uppercase; color:var(--gold); margin-bottom:16px; }
+  .question-text { font-family:'Cormorant Garamond',serif; font-size:clamp(22px,5vw,30px); font-weight:400; line-height:1.35; color:var(--dark); margin-bottom:36px; }
+  .options { display:flex; flex-direction:column; gap:12px; }
+  .option { background:white; border:1.5px solid var(--cream2); border-radius:8px; padding:16px 20px; cursor:pointer; transition:all 0.2s; font-size:15px; color:var(--text); text-align:left; display:flex; align-items:center; gap:14px; }
+  .option:hover { border-color:var(--gold); background:#FDFBF6; transform:translateX(4px); }
+  .option.selected { border-color:var(--gold); background:#FDFBF6; color:var(--dark); }
+  .option-dot { width:20px; height:20px; border-radius:50%; border:2px solid var(--cream2); flex-shrink:0; transition:all 0.2s; display:flex; align-items:center; justify-content:center; }
+  .option.selected .option-dot { border-color:var(--gold); background:var(--gold); }
+  .option.selected .option-dot::after { content:''; width:6px; height:6px; border-radius:50%; background:white; }
+  .btn-next { margin-top:32px; background:var(--dark); color:var(--cream); border:none; padding:15px 36px; font-family:'Jost',sans-serif; font-size:13px; font-weight:500; letter-spacing:1.5px; text-transform:uppercase; cursor:pointer; border-radius:2px; transition:all 0.2s; display:none; }
+  .btn-next:hover { background:var(--dark3); }
+  .btn-next.visible { display:block; }
+
+  /* ═══ CONTACT MODAL ═══ */
+  #contactModal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(15,14,12,0.92);
+    z-index: 999;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+  }
+  #contactModal.active { display: flex; }
+
+  .modal-box {
+    background: var(--dark2);
+    border: 1px solid rgba(201,168,76,0.3);
+    border-radius: 12px;
+    padding: 36px 28px;
+    max-width: 400px;
+    width: 100%;
+    text-align: center;
+    animation: fadeUp 0.3s ease forwards;
   }
 
-  .intro-title {
+  .modal-gold { font-size:10px; letter-spacing:4px; text-transform:uppercase; color:var(--gold); margin-bottom:14px; }
+
+  .modal-title {
     font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(36px, 8vw, 56px);
-    font-weight: 400;
-    line-height: 1.15;
+    font-size: 24px;
     color: var(--cream);
     margin-bottom: 8px;
-  }
-
-  .intro-title em {
-    font-style: italic;
-    color: var(--gold);
-  }
-
-  .intro-sub {
-    font-size: 15px;
-    color: rgba(247,243,236,0.55);
-    margin-bottom: 48px;
-    font-weight: 300;
-    line-height: 1.6;
-    max-width: 320px;
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  .intro-features {
-    display: flex;
-    gap: 24px;
-    justify-content: center;
-    margin-bottom: 48px;
-    flex-wrap: wrap;
-  }
-
-  .intro-feature {
-    font-size: 13px;
-    color: rgba(247,243,236,0.5);
-    display: flex;
-    align-items: center;
-    gap: 6px;
-  }
-
-  .intro-feature::before {
-    content: '';
-    width: 4px; height: 4px;
-    border-radius: 50%;
-    background: var(--gold);
-    flex-shrink: 0;
-  }
-
-  .btn-start {
-    background: var(--gold);
-    color: var(--dark);
-    border: none;
-    padding: 16px 48px;
-    font-family: 'Jost', sans-serif;
-    font-size: 14px;
-    font-weight: 600;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    cursor: pointer;
-    border-radius: 2px;
-    transition: all 0.2s;
-    position: relative;
-    z-index: 1;
-  }
-
-  .btn-start:hover { background: var(--gold-light); transform: translateY(-1px); }
-
-  /* ═══ TEST SCREEN ═══ */
-  #test {
-    background: var(--cream);
-    flex-direction: column;
-  }
-
-  .test-header {
-    background: var(--dark);
-    padding: 20px 24px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-
-  .test-brand-sm {
-    font-size: 11px;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    color: var(--gold);
-  }
-
-  .test-progress-wrap {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-
-  .test-progress-num {
-    font-size: 12px;
-    color: rgba(247,243,236,0.5);
-    min-width: 40px;
-    text-align: right;
-  }
-
-  .test-progress-bar {
-    width: 120px;
-    height: 2px;
-    background: rgba(255,255,255,0.1);
-    border-radius: 2px;
-    overflow: hidden;
-  }
-
-  .test-progress-fill {
-    height: 100%;
-    background: var(--gold);
-    border-radius: 2px;
-    transition: width 0.4s ease;
-  }
-
-  .test-body {
-    flex: 1;
-    padding: 40px 24px;
-    max-width: 560px;
-    margin: 0 auto;
-    width: 100%;
-  }
-
-  .question-num {
-    font-size: 11px;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin-bottom: 16px;
-  }
-
-  .question-text {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(22px, 5vw, 30px);
-    font-weight: 400;
-    line-height: 1.35;
-    color: var(--dark);
-    margin-bottom: 36px;
-  }
-
-  .options {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-  }
-
-  .option {
-    background: white;
-    border: 1.5px solid var(--cream2);
-    border-radius: 8px;
-    padding: 16px 20px;
-    cursor: pointer;
-    transition: all 0.2s;
-    font-size: 15px;
-    color: var(--text);
-    text-align: left;
-    display: flex;
-    align-items: center;
-    gap: 14px;
-  }
-
-  .option:hover {
-    border-color: var(--gold);
-    background: #FDFBF6;
-    transform: translateX(4px);
-  }
-
-  .option.selected {
-    border-color: var(--gold);
-    background: #FDFBF6;
-    color: var(--dark);
-  }
-
-  .option-dot {
-    width: 20px; height: 20px;
-    border-radius: 50%;
-    border: 2px solid var(--cream2);
-    flex-shrink: 0;
-    transition: all 0.2s;
-    display: flex; align-items: center; justify-content: center;
-  }
-
-  .option.selected .option-dot {
-    border-color: var(--gold);
-    background: var(--gold);
-  }
-
-  .option.selected .option-dot::after {
-    content: '';
-    width: 6px; height: 6px;
-    border-radius: 50%;
-    background: white;
-  }
-
-  .option-points {
-    margin-left: auto;
-    font-size: 11px;
-    color: var(--cream2);
-    font-weight: 500;
-  }
-
-  .btn-next {
-    margin-top: 32px;
-    background: var(--dark);
-    color: var(--cream);
-    border: none;
-    padding: 15px 36px;
-    font-family: 'Jost', sans-serif;
-    font-size: 13px;
-    font-weight: 500;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-    cursor: pointer;
-    border-radius: 2px;
-    transition: all 0.2s;
-    display: none;
-  }
-
-  .btn-next:hover { background: var(--dark3); }
-  .btn-next.visible { display: block; }
-
-  /* ═══ RESULT SCREEN ═══ */
-  #result { background: var(--cream); }
-
-  .result-hero {
-    background: var(--dark);
-    padding: 48px 24px;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .result-hero::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(circle at 50% 120%, rgba(201,168,76,0.15) 0%, transparent 60%);
-  }
-
-  .result-label {
-    font-size: 11px;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin-bottom: 20px;
-    position: relative;
-  }
-
-  .result-score-wrap {
-    position: relative;
-    margin-bottom: 20px;
-  }
-
-  .result-score {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 80px;
-    font-weight: 600;
-    line-height: 1;
-    color: var(--gold);
-  }
-
-  .result-score-max {
-    font-size: 20px;
-    color: rgba(247,243,236,0.3);
-    font-family: 'Cormorant Garamond', serif;
-  }
-
-  .result-title {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 28px;
-    color: var(--cream);
-    margin-bottom: 10px;
-    position: relative;
-  }
-
-  .result-desc {
-    font-size: 14px;
-    color: rgba(247,243,236,0.55);
-    max-width: 360px;
-    margin: 0 auto;
-    line-height: 1.7;
-    font-weight: 300;
-    position: relative;
-  }
-
-  .result-body {
-    padding: 32px 24px;
-    max-width: 560px;
-    margin: 0 auto;
-    width: 100%;
-  }
-
-  .result-insights {
-    margin-bottom: 32px;
-  }
-
-  .result-insights-title {
-    font-size: 11px;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    color: var(--muted);
-    margin-bottom: 16px;
-  }
-
-  .insight-item {
-    display: flex;
-    gap: 12px;
-    align-items: flex-start;
-    padding: 14px 0;
-    border-bottom: 1px solid var(--cream2);
-  }
-
-  .insight-item:last-child { border-bottom: none; }
-
-  .insight-icon {
-    width: 32px; height: 32px;
-    border-radius: 50%;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 14px;
-    flex-shrink: 0;
-    margin-top: 2px;
-  }
-
-  .insight-text { font-size: 14px; line-height: 1.6; color: var(--text); }
-  .insight-strong { font-weight: 600; color: var(--dark); }
-
-  /* ═══ CHECKLIST ═══ */
-  .checklist-section {
-    background: var(--dark);
-    padding: 40px 24px;
-    color: var(--cream);
-  }
-
-  .checklist-header {
-    text-align: center;
-    margin-bottom: 32px;
-  }
-
-  .checklist-eyebrow {
-    font-size: 10px;
-    letter-spacing: 4px;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin-bottom: 12px;
-  }
-
-  .checklist-title {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 26px;
-    font-weight: 400;
-    color: var(--cream);
     line-height: 1.3;
   }
 
-  .checklist-title em { font-style: italic; color: var(--gold); }
-
-  .checklist-subtitle {
+  .modal-sub {
     font-size: 13px;
     color: rgba(247,243,236,0.45);
-    margin-top: 8px;
+    margin-bottom: 24px;
     font-weight: 300;
+    line-height: 1.6;
   }
 
-  .checklist-items {
-    max-width: 560px;
-    margin: 0 auto 32px;
-  }
-
-  .check-item {
-    display: flex;
-    gap: 16px;
-    align-items: flex-start;
-    padding: 16px 0;
-    border-bottom: 1px solid rgba(255,255,255,0.06);
-    cursor: pointer;
-    transition: opacity 0.2s;
-  }
-
-  .check-item:last-child { border-bottom: none; }
-
-  .check-box {
-    width: 22px; height: 22px;
-    border: 1.5px solid rgba(201,168,76,0.4);
-    border-radius: 4px;
-    flex-shrink: 0;
-    margin-top: 1px;
-    display: flex; align-items: center; justify-content: center;
-    transition: all 0.2s;
-  }
-
-  .check-item.checked .check-box {
-    background: var(--gold);
-    border-color: var(--gold);
-  }
-
-  .check-item.checked .check-box::after {
-    content: '✓';
-    color: var(--dark);
-    font-size: 13px;
-    font-weight: 700;
-  }
-
-  .check-content { flex: 1; }
-
-  .check-title {
-    font-size: 14px;
-    font-weight: 500;
-    color: var(--cream);
-    margin-bottom: 3px;
-    transition: opacity 0.2s;
-  }
-
-  .check-item.checked .check-title {
-    opacity: 0.4;
-    text-decoration: line-through;
-  }
-
-  .check-desc {
-    font-size: 12px;
-    color: rgba(247,243,236,0.4);
-    line-height: 1.5;
-    font-weight: 300;
-  }
-
-  .check-num {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 18px;
-    color: rgba(201,168,76,0.3);
-    flex-shrink: 0;
-    min-width: 24px;
-    text-align: right;
-    margin-top: 2px;
-  }
-
-  /* CTA */
-  .cta-section {
-    padding: 32px 24px 48px;
-    text-align: center;
-    max-width: 560px;
-    margin: 0 auto;
+  .modal-input {
     width: 100%;
+    padding: 13px 16px;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(201,168,76,0.25);
+    border-radius: 6px;
+    font-family: 'Jost', sans-serif;
+    font-size: 14px;
+    color: var(--cream);
+    margin-bottom: 10px;
+    outline: none;
+    transition: border-color 0.2s;
   }
+  .modal-input::placeholder { color: rgba(247,243,236,0.3); }
+  .modal-input:focus { border-color: var(--gold); }
 
-  .cta-divider {
-    width: 40px;
-    height: 1px;
+  .modal-submit {
+    width: 100%;
+    padding: 14px;
     background: var(--gold);
-    margin: 0 auto 24px;
-  }
-
-  .cta-text {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 22px;
     color: var(--dark);
-    line-height: 1.4;
-    margin-bottom: 8px;
-  }
-
-  .cta-sub {
-    font-size: 13px;
-    color: var(--muted);
-    margin-bottom: 28px;
-    font-weight: 300;
-  }
-
-  .cta-links {
-    display: flex;
-    gap: 12px;
-    justify-content: center;
-    flex-wrap: wrap;
-  }
-
-  .cta-btn {
-    padding: 13px 28px;
+    border: none;
+    border-radius: 6px;
     font-family: 'Jost', sans-serif;
     font-size: 13px;
-    font-weight: 500;
+    font-weight: 600;
     letter-spacing: 1px;
     text-transform: uppercase;
-    border-radius: 2px;
     cursor: pointer;
-    text-decoration: none;
     transition: all 0.2s;
-    border: none;
-    display: inline-block;
+    margin-top: 4px;
   }
+  .modal-submit:hover { background: var(--gold-light); }
 
-  .cta-btn-primary { background: var(--dark); color: var(--cream); }
-  .cta-btn-primary:hover { background: var(--dark3); }
-  .cta-btn-secondary { background: transparent; color: var(--dark); border: 1.5px solid var(--cream2); }
-  .cta-btn-secondary:hover { border-color: var(--gold); }
-
-  .retry-btn {
-    margin-top: 20px;
+  .modal-skip {
     background: none;
     border: none;
     font-family: 'Jost', sans-serif;
     font-size: 12px;
-    color: var(--muted);
+    color: rgba(247,243,236,0.3);
     cursor: pointer;
-    letter-spacing: 1px;
-    text-transform: uppercase;
+    margin-top: 14px;
     text-decoration: underline;
     text-underline-offset: 3px;
+    display: block;
+    width: 100%;
+    text-align: center;
+    letter-spacing: 0.5px;
   }
+  .modal-skip:hover { color: rgba(247,243,236,0.5); }
 
-  /* ANIMATIONS */
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(16px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
+  /* ═══ RESULT ═══ */
+  #result { background:var(--cream); }
+  .result-hero { background:var(--dark); padding:48px 24px; text-align:center; position:relative; overflow:hidden; }
+  .result-hero::before { content:''; position:absolute; inset:0; background:radial-gradient(circle at 50% 120%,rgba(201,168,76,0.15) 0%,transparent 60%); }
+  .result-label { font-size:11px; letter-spacing:3px; text-transform:uppercase; color:var(--gold); margin-bottom:20px; position:relative; }
+  .result-score-wrap { position:relative; margin-bottom:20px; }
+  .result-score { font-family:'Cormorant Garamond',serif; font-size:80px; font-weight:600; line-height:1; color:var(--gold); }
+  .result-score-max { font-size:20px; color:rgba(247,243,236,0.3); font-family:'Cormorant Garamond',serif; }
+  .result-title { font-family:'Cormorant Garamond',serif; font-size:28px; color:var(--cream); margin-bottom:10px; position:relative; }
+  .result-desc { font-size:14px; color:rgba(247,243,236,0.55); max-width:360px; margin:0 auto; line-height:1.7; font-weight:300; position:relative; }
+  .result-body { padding:32px 24px; max-width:560px; margin:0 auto; width:100%; }
+  .result-insights { margin-bottom:32px; }
+  .result-insights-title { font-size:11px; letter-spacing:3px; text-transform:uppercase; color:var(--muted); margin-bottom:16px; }
+  .insight-item { display:flex; gap:12px; align-items:flex-start; padding:14px 0; border-bottom:1px solid var(--cream2); }
+  .insight-item:last-child { border-bottom:none; }
+  .insight-icon { width:32px; height:32px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:14px; flex-shrink:0; margin-top:2px; }
+  .insight-text { font-size:14px; line-height:1.6; color:var(--text); }
+  .insight-strong { font-weight:600; color:var(--dark); }
 
-  .fade-in { animation: fadeUp 0.4s ease forwards; }
+  /* CHECKLIST */
+  .checklist-section { background:var(--dark); padding:40px 24px; color:var(--cream); }
+  .checklist-header { text-align:center; margin-bottom:32px; }
+  .checklist-eyebrow { font-size:10px; letter-spacing:4px; text-transform:uppercase; color:var(--gold); margin-bottom:12px; }
+  .checklist-title { font-family:'Cormorant Garamond',serif; font-size:26px; font-weight:400; color:var(--cream); line-height:1.3; }
+  .checklist-title em { font-style:italic; color:var(--gold); }
+  .checklist-subtitle { font-size:13px; color:rgba(247,243,236,0.45); margin-top:8px; font-weight:300; }
+  .checklist-items { max-width:560px; margin:0 auto 32px; }
+  .check-item { display:flex; gap:16px; align-items:flex-start; padding:16px 0; border-bottom:1px solid rgba(255,255,255,0.06); cursor:pointer; transition:opacity 0.2s; }
+  .check-item:last-child { border-bottom:none; }
+  .check-box { width:22px; height:22px; border:1.5px solid rgba(201,168,76,0.4); border-radius:4px; flex-shrink:0; margin-top:1px; display:flex; align-items:center; justify-content:center; transition:all 0.2s; }
+  .check-item.checked .check-box { background:var(--gold); border-color:var(--gold); }
+  .check-item.checked .check-box::after { content:'✓'; color:var(--dark); font-size:13px; font-weight:700; }
+  .check-content { flex:1; }
+  .check-title { font-size:14px; font-weight:500; color:var(--cream); margin-bottom:3px; transition:opacity 0.2s; }
+  .check-item.checked .check-title { opacity:0.4; text-decoration:line-through; }
+  .check-desc { font-size:12px; color:rgba(247,243,236,0.4); line-height:1.5; font-weight:300; }
+  .check-num { font-family:'Cormorant Garamond',serif; font-size:18px; color:rgba(201,168,76,0.3); flex-shrink:0; min-width:24px; text-align:right; margin-top:2px; }
 
-  @media (max-width: 400px) {
-    .intro-features { flex-direction: column; align-items: center; gap: 12px; }
-  }
+  /* CTA */
+  .cta-section { padding:32px 24px 48px; text-align:center; max-width:560px; margin:0 auto; width:100%; }
+  .cta-divider { width:40px; height:1px; background:var(--gold); margin:0 auto 24px; }
+  .cta-text { font-family:'Cormorant Garamond',serif; font-size:22px; color:var(--dark); line-height:1.4; margin-bottom:8px; }
+  .cta-sub { font-size:13px; color:var(--muted); margin-bottom:28px; font-weight:300; }
+  .cta-links { display:flex; gap:12px; justify-content:center; flex-wrap:wrap; }
+  .cta-btn { padding:13px 28px; font-family:'Jost',sans-serif; font-size:13px; font-weight:500; letter-spacing:1px; text-transform:uppercase; border-radius:2px; cursor:pointer; text-decoration:none; transition:all 0.2s; border:none; display:inline-block; }
+  .cta-btn-primary { background:var(--dark); color:var(--cream); }
+  .cta-btn-primary:hover { background:var(--dark3); }
+  .cta-btn-secondary { background:transparent; color:var(--dark); border:1.5px solid var(--cream2); }
+  .cta-btn-secondary:hover { border-color:var(--gold); }
+  .retry-btn { margin-top:20px; background:none; border:none; font-family:'Jost',sans-serif; font-size:12px; color:var(--muted); cursor:pointer; letter-spacing:1px; text-transform:uppercase; text-decoration:underline; text-underline-offset:3px; }
+
+  @keyframes fadeUp { from { opacity:0; transform:translateY(16px); } to { opacity:1; transform:translateY(0); } }
+  .fade-in { animation:fadeUp 0.4s ease forwards; }
+  @media (max-width:400px) { .intro-features { flex-direction:column; align-items:center; gap:12px; } }
 </style>
 </head>
 <body>
 
-<!-- ═══ INTRO ═══ -->
+<!-- CONTACT MODAL -->
+<div id="contactModal">
+  <div class="modal-box">
+    <div class="modal-gold">ЗдравСкан</div>
+    <div class="modal-title">Получите персональный разбор</div>
+    <div class="modal-sub">Оставьте контакт — наш специалист объяснит результат и ответит на вопросы</div>
+    <input class="modal-input" id="mName" type="text" placeholder="Ваше имя">
+    <input class="modal-input" id="mPhone" type="tel" placeholder="Телефон">
+    <input class="modal-input" id="mCity" type="text" placeholder="Ваш город">
+    <button class="modal-submit" onclick="submitContact()">Получить разбор →</button>
+    <button class="modal-skip" onclick="skipContact()">Пропустить и посмотреть результат</button>
+  </div>
+</div>
+
+<!-- INTRO -->
 <div class="screen active" id="intro">
   <div style="position:relative;z-index:1;width:100%;max-width:480px;margin:0 auto;">
     <div class="intro-brand">ЗдравСкан</div>
@@ -614,7 +276,7 @@
   </div>
 </div>
 
-<!-- ═══ TEST ═══ -->
+<!-- TEST -->
 <div class="screen" id="test">
   <div class="test-header">
     <div class="test-brand-sm">ЗдравСкан</div>
@@ -633,7 +295,7 @@
   </div>
 </div>
 
-<!-- ═══ RESULT ═══ -->
+<!-- RESULT -->
 <div class="screen" id="result">
   <div class="result-hero">
     <div class="result-label">Результат теста</div>
@@ -652,15 +314,12 @@
     </div>
   </div>
 
-  <!-- CHECKLIST -->
-  <!-- CHECKLIST PART 1: 7 signals -->
   <div class="checklist-section">
     <div class="checklist-header">
       <div class="checklist-eyebrow">Чек-лист здоровья 2026</div>
       <div class="checklist-title">7 сигналов что организм<br><em>уже просит помощи</em></div>
       <div class="checklist-subtitle">Отмечай то, что узнаёшь в себе</div>
     </div>
-
     <div class="checklist-items">
       <div class="check-item" onclick="toggleCheck(this)">
         <div class="check-num">01</div>
@@ -721,15 +380,11 @@
     </div>
   </div>
 
-  <!-- CHECKLIST PART 2: Comparison -->
-  <div style="background:#1C1A16; padding: 40px 24px;">
-    <div style="max-width:560px; margin:0 auto;">
-
+  <div style="background:#1C1A16;padding:40px 24px;">
+    <div style="max-width:560px;margin:0 auto;">
       <div style="font-size:10px;letter-spacing:3px;text-transform:uppercase;color:#C9A84C;margin-bottom:12px;text-align:center;">А теперь — правда</div>
       <div style="font-family:'Cormorant Garamond',serif;font-size:24px;color:#F7F3EC;text-align:center;margin-bottom:8px;line-height:1.3;">Сколько стоит<br><em style="color:#C9A84C;">традиционная диагностика</em></div>
       <div style="font-size:13px;color:rgba(247,243,236,0.45);text-align:center;margin-bottom:28px;">Терапевт составил список обязательных обследований по возрасту</div>
-
-      <!-- Age cards -->
       <div style="background:rgba(255,255,255,0.05);border-radius:10px;padding:14px 18px;margin-bottom:12px;border-left:3px solid #C9A84C;">
         <div style="font-size:12px;font-weight:600;color:#C9A84C;margin-bottom:8px;">👶 Дети и подростки (0–17 лет)</div>
         <div style="font-size:13px;color:rgba(247,243,236,0.7);line-height:1.7;">Анализ крови, мочи, биохимия, витамин D, железо, ТТГ, УЗИ, ЭКГ</div>
@@ -738,7 +393,6 @@
           <span style="font-size:13px;font-weight:700;color:#F7F3EC;">~8 850 ₽ / год</span>
         </div>
       </div>
-
       <div style="background:rgba(255,255,255,0.05);border-radius:10px;padding:14px 18px;margin-bottom:12px;border-left:3px solid #C9A84C;">
         <div style="font-size:12px;font-weight:600;color:#C9A84C;margin-bottom:8px;">🧑 Взрослые (18–44 года)</div>
         <div style="font-size:13px;color:rgba(247,243,236,0.7);line-height:1.7;">Кровь, биохимия, липиды, гормоны, витамин D, УЗИ, ЭКГ и другое</div>
@@ -747,7 +401,6 @@
           <span style="font-size:13px;font-weight:700;color:#F7F3EC;">~13 350 ₽ / год</span>
         </div>
       </div>
-
       <div style="background:rgba(255,255,255,0.05);border-radius:10px;padding:14px 18px;margin-bottom:24px;border-left:3px solid #C9A84C;">
         <div style="font-size:12px;font-weight:600;color:#C9A84C;margin-bottom:8px;">👴 Взрослые 45+</div>
         <div style="font-size:13px;color:rgba(247,243,236,0.7);line-height:1.7;">Расширенный список + онкомаркёры, гастроскопия, ЭхоКГ и другое</div>
@@ -756,10 +409,7 @@
           <span style="font-size:13px;font-weight:700;color:#F7F3EC;">~22 550 ₽ / год</span>
         </div>
       </div>
-
-      <!-- Comparison table -->
       <div style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#C9A84C;margin-bottom:14px;text-align:center;">Итоговое сравнение</div>
-
       <div style="border-radius:10px;overflow:hidden;margin-bottom:24px;">
         <div style="display:grid;grid-template-columns:1fr 1fr 1fr;background:rgba(201,168,76,0.15);padding:10px 14px;">
           <div style="font-size:11px;font-weight:600;color:#C9A84C;">Параметр</div>
@@ -797,37 +447,28 @@
           <div style="font-size:12px;font-weight:700;color:#C9A84C;text-align:center;">Готовый отчёт</div>
         </div>
       </div>
-
-      <!-- Cases -->
       <div style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#C9A84C;margin-bottom:14px;text-align:center;">Реальные истории</div>
-
       <div style="background:rgba(255,255,255,0.04);border-radius:10px;padding:14px 18px;margin-bottom:10px;">
         <div style="font-size:12px;font-weight:600;color:#C9A84C;margin-bottom:6px;">Игорь, 42 года, Санкт-Петербург</div>
         <div style="font-size:13px;color:rgba(247,243,236,0.65);line-height:1.6;">«Чувствовал постоянную усталость. Сдал все анализы — "здоров". Прошёл ЗдравСкан — выявили дефицит магния и витамина D. Через месяц энергии стало в 2 раза больше»</div>
       </div>
-
       <div style="background:rgba(255,255,255,0.04);border-radius:10px;padding:14px 18px;margin-bottom:10px;">
         <div style="font-size:12px;font-weight:600;color:#C9A84C;margin-bottom:6px;">Татьяна, 38 лет, Симферополь</div>
         <div style="font-size:13px;color:rgba(247,243,236,0.65);line-height:1.6;">«Прошли сканирование всей семьёй — я и 4 детей. Не пришлось тратить деньги и время на врачей. Сразу получили направления на то, чего реально не хватает»</div>
       </div>
-
       <div style="background:rgba(255,255,255,0.04);border-radius:10px;padding:14px 18px;margin-bottom:24px;">
         <div style="font-size:12px;font-weight:600;color:#C9A84C;margin-bottom:6px;">Евгения, 51 год, Москва</div>
         <div style="font-size:13px;color:rgba(247,243,236,0.65);line-height:1.6;">«Была в шоке после сканирования. Аппарат показал то, что врачи не видели годами. Сразу получила направления к нужным специалистам»</div>
       </div>
-
-      <!-- Plan -->
       <div style="background:rgba(201,168,76,0.1);border:1px solid rgba(201,168,76,0.3);border-radius:10px;padding:16px 18px;text-align:center;">
         <div style="font-size:12px;font-weight:600;color:#C9A84C;margin-bottom:8px;">Ваш план на год</div>
         <div style="font-size:13px;color:rgba(247,243,236,0.7);line-height:1.7;margin-bottom:10px;">1 раз в год — ЗдравСкан (5 000 ₽ / 30 мин)<br>1 раз в год — терапевт с отчётом (2 000 ₽)<br>При необходимости — целевые анализы</div>
         <div style="font-size:15px;font-weight:700;color:#F7F3EC;">Итого: ~7 000 ₽ и 1,5 часа в год</div>
         <div style="font-size:12px;color:rgba(247,243,236,0.4);margin-top:4px;">вместо 15 000–22 000 ₽ и недели хождений</div>
       </div>
-
     </div>
   </div>
 
-  <!-- CTA -->
   <div class="cta-section">
     <div class="cta-divider"></div>
     <div class="cta-text">Узнай что происходит<br>именно с твоим организмом</div>
@@ -841,142 +482,31 @@
 </div>
 
 <script>
+// ═══════════════════════════════════════════
+// ВСТАВЬТЕ СЮДА ССЫЛКУ ИЗ GOOGLE APPS SCRIPT
+const WEBHOOK_URL = 'https://script.google.com/macros/s/ВАША_ССЫЛКА/exec';
+// ═══════════════════════════════════════════
+
 const questions = [
-  {
-    text: "Как вы просыпаетесь по утрам?",
-    options: [
-      { text: "Легко и с энергией — готова к новому дню", pts: 0 },
-      { text: "Нормально, но нужно время чтобы раскачаться", pts: 1 },
-      { text: "Тяжело — уже с утра чувствую усталость", pts: 2 },
-      { text: "Очень тяжело — после сна как будто не отдыхал (а)", pts: 3 },
-    ]
-  },
-  {
-    text: "Как часто вы чувствуете упадок сил в течение дня?",
-    options: [
-      { text: "Редко — энергии хватает на весь день", pts: 0 },
-      { text: "Иногда, обычно к вечеру", pts: 1 },
-      { text: "Часто — особенно после обеда хочется лечь", pts: 2 },
-      { text: "Постоянно — сил не хватает ни на что", pts: 3 },
-    ]
-  },
-  {
-    text: "Как вы себя чувствуете после сна в 7–8 часов?",
-    options: [
-      { text: "Отлично — полностью восстанавливаюсь", pts: 0 },
-      { text: "В целом нормально", pts: 1 },
-      { text: "Не очень — хочется ещё поспать", pts: 2 },
-      { text: "Разбитой — сон не восстанавливает", pts: 3 },
-    ]
-  },
-  {
-    text: "Бывает ли у вас туман в голове или снижение концентрации?",
-    options: [
-      { text: "Нет — мышление чёткое", pts: 0 },
-      { text: "Редко, только при сильной нагрузке", pts: 1 },
-      { text: "Иногда — мысли как через вату", pts: 2 },
-      { text: "Часто — сложно сосредоточиться", pts: 3 },
-    ]
-  },
-  {
-    text: "Как часто вы раздражаетесь без видимой причины?",
-    options: [
-      { text: "Практически никогда", pts: 0 },
-      { text: "Редко — только в стрессовые периоды", pts: 1 },
-      { text: "Периодически — замечаю что срываюсь", pts: 2 },
-      { text: "Часто — это стало нормой", pts: 3 },
-    ]
-  },
-  {
-    text: "Есть ли у вас тяга к сладкому или тяжёлой еде?",
-    options: [
-      { text: "Нет — питаюсь сбалансированно", pts: 0 },
-      { text: "Иногда, но контролирую", pts: 1 },
-      { text: "Часто — особенно во второй половине дня", pts: 2 },
-      { text: "Постоянно — без сладкого не могу", pts: 3 },
-    ]
-  },
-  {
-    text: "Как вы реагируете на стресс?",
-    options: [
-      { text: "Спокойно — восстанавливаюсь быстро", pts: 0 },
-      { text: "Нормально — справляюсь", pts: 1 },
-      { text: "Тяжело — долго прихожу в себя", pts: 2 },
-      { text: "Очень тяжело — стресс выбивает из колеи надолго", pts: 3 },
-    ]
-  },
-  {
-    text: "Бывает ли ощущение что «что-то не так», хотя анализы в норме?",
-    options: [
-      { text: "Нет — чувствую себя хорошо", pts: 0 },
-      { text: "Иногда появляется такая мысль", pts: 1 },
-      { text: "Да — врачи говорят норма, а я так не считаю", pts: 2 },
-      { text: "Да, постоянно — и это очень беспокоит", pts: 3 },
-    ]
-  },
-  {
-    text: "Как вы оцениваете состояние своей пищеварительной системы?",
-    options: [
-      { text: "Отлично — никаких проблем", pts: 0 },
-      { text: "В целом нормально", pts: 1 },
-      { text: "Есть периодический дискомфорт, вздутие", pts: 2 },
-      { text: "Частые проблемы — тяжесть, вздутие, нестабильность", pts: 3 },
-    ]
-  },
-  {
-    text: "Как давно вы проверяли состояние своего организма комплексно?",
-    options: [
-      { text: "Недавно — регулярно слежу за здоровьем", pts: 0 },
-      { text: "В этом году", pts: 1 },
-      { text: "Давно — больше года назад", pts: 2 },
-      { text: "Никогда или очень давно не помню", pts: 3 },
-    ]
-  },
+  { text:"Как вы просыпаетесь по утрам?", options:[{text:"Легко и с энергией — готова к новому дню",pts:0},{text:"Нормально, но нужно время чтобы раскачаться",pts:1},{text:"Тяжело — уже с утра чувствую усталость",pts:2},{text:"Очень тяжело — после сна как будто не отдыхал(а)",pts:3}]},
+  { text:"Как часто вы чувствуете упадок сил в течение дня?", options:[{text:"Редко — энергии хватает на весь день",pts:0},{text:"Иногда, обычно к вечеру",pts:1},{text:"Часто — особенно после обеда хочется лечь",pts:2},{text:"Постоянно — сил не хватает ни на что",pts:3}]},
+  { text:"Как вы себя чувствуете после сна в 7–8 часов?", options:[{text:"Отлично — полностью восстанавливаюсь",pts:0},{text:"В целом нормально",pts:1},{text:"Не очень — хочется ещё поспать",pts:2},{text:"Разбитой — сон не восстанавливает",pts:3}]},
+  { text:"Бывает ли у вас туман в голове или снижение концентрации?", options:[{text:"Нет — мышление чёткое",pts:0},{text:"Редко, только при сильной нагрузке",pts:1},{text:"Иногда — мысли как через вату",pts:2},{text:"Часто — сложно сосредоточиться",pts:3}]},
+  { text:"Как часто вы раздражаетесь без видимой причины?", options:[{text:"Практически никогда",pts:0},{text:"Редко — только в стрессовые периоды",pts:1},{text:"Периодически — замечаю что срываюсь",pts:2},{text:"Часто — это стало нормой",pts:3}]},
+  { text:"Есть ли у вас тяга к сладкому или тяжёлой еде?", options:[{text:"Нет — питаюсь сбалансированно",pts:0},{text:"Иногда, но контролирую",pts:1},{text:"Часто — особенно во второй половине дня",pts:2},{text:"Постоянно — без сладкого не могу",pts:3}]},
+  { text:"Как вы реагируете на стресс?", options:[{text:"Спокойно — восстанавливаюсь быстро",pts:0},{text:"Нормально — справляюсь",pts:1},{text:"Тяжело — долго прихожу в себя",pts:2},{text:"Очень тяжело — стресс выбивает из колеи надолго",pts:3}]},
+  { text:"Бывает ли ощущение что «что-то не так», хотя анализы в норме?", options:[{text:"Нет — чувствую себя хорошо",pts:0},{text:"Иногда появляется такая мысль",pts:1},{text:"Да — врачи говорят норма, а я так не считаю",pts:2},{text:"Да, постоянно — и это очень беспокоит",pts:3}]},
+  { text:"Как вы оцениваете состояние своей пищеварительной системы?", options:[{text:"Отлично — никаких проблем",pts:0},{text:"В целом нормально",pts:1},{text:"Есть периодический дискомфорт, вздутие",pts:2},{text:"Частые проблемы — тяжесть, вздутие, нестабильность",pts:3}]},
+  { text:"Как давно вы проверяли состояние своего организма комплексно?", options:[{text:"Недавно — регулярно слежу за здоровьем",pts:0},{text:"В этом году",pts:1},{text:"Давно — больше года назад",pts:2},{text:"Никогда или очень давно не помню",pts:3}]},
 ];
 
 const results = [
-  {
-    range: [0, 8],
-    title: "Ресурс в порядке",
-    desc: "Ваш организм работает хорошо — вы чувствуете энергию и восстанавливаетесь. Главное сейчас — поддерживать это состояние и следить за изменениями.",
-    color: "#3D7A5A",
-    bg: "#EBF5EF",
-    insights: [
-      { icon: "💚", text: "<span class='insight-strong'>Хорошая база.</span> Энергия есть, сон восстанавливает, стресс переносится нормально." },
-      { icon: "🔍", text: "<span class='insight-strong'>Профилактика.</span> Даже при хорошем самочувствии полезно знать исходные показатели — чтобы отследить изменения вовремя." },
-      { icon: "📌", text: "<span class='insight-strong'>Рекомендация.</span> Пройдите сканирование как базовый чекап — и сравнивайте результаты раз в полгода." },
-    ]
-  },
-  {
-    range: [9, 17],
-    range: [9, 17],
-    title: "Ресурс на грани",
-    desc: "Есть сигналы что организм работает с напряжением. Пока держитесь — но тело уже подаёт знаки. Самое время разобраться что происходит.",
-    color: "#C45C1A",
-    bg: "#FBF0E8",
-    insights: [
-      { icon: "⚠️", text: "<span class='insight-strong'>Тревожные сигналы.</span> Усталость, туман в голове или нестабильный сон — это не норма, а сообщение от организма." },
-      { icon: "🔍", text: "<span class='insight-strong'>Найдите причину.</span> Симптомы есть, но без оцифровки сложно понять — это дефицит, перегруз или что-то другое." },
-      { icon: "⏱️", text: "<span class='insight-strong'>Время работает против.</span> На этой стадии восстановиться проще всего — пока компенсаторные механизмы ещё работают." },
-    ]
-  },
-  {
-    range: [18, 30],
-    title: "Ресурс истощён",
-    desc: "Организм давно работает в режиме перегруза и недовосстановления. Это не слабость — это сигнал что пора остановиться и разобраться.",
-    color: "#B83A2E",
-    bg: "#FAEDED",
-    insights: [
-      { icon: "🔴", text: "<span class='insight-strong'>Перегруз очевиден.</span> Тело не отдыхает даже во сне — это значит что запасы ресурса на критическом уровне." },
-      { icon: "🧩", text: "<span class='insight-strong'>Нужна система.</span> Хаотичные витамины и отдых не помогут — нужно понять где именно теряется энергия." },
-      { icon: "💡", text: "<span class='insight-strong'>Хорошая новость.</span> При правильном подходе улучшения приходят быстро — когда знаешь куда смотреть." },
-    ]
-  }
+  { range:[0,8], title:"Ресурс в порядке", desc:"Ваш организм работает хорошо — вы чувствуете энергию и восстанавливаетесь. Главное сейчас — поддерживать это состояние и следить за изменениями.", color:"#3D7A5A", bg:"#EBF5EF", insights:[{icon:"💚",text:"<span class='insight-strong'>Хорошая база.</span> Энергия есть, сон восстанавливает, стресс переносится нормально."},{icon:"🔍",text:"<span class='insight-strong'>Профилактика.</span> Даже при хорошем самочувствии полезно знать исходные показатели — чтобы отследить изменения вовремя."},{icon:"📌",text:"<span class='insight-strong'>Рекомендация.</span> Пройдите сканирование как базовый чекап — и сравнивайте результаты раз в полгода."}]},
+  { range:[9,17], title:"Ресурс на грани", desc:"Есть сигналы что организм работает с напряжением. Пока держитесь — но тело уже подаёт знаки. Самое время разобраться что происходит.", color:"#C45C1A", bg:"#FBF0E8", insights:[{icon:"⚠️",text:"<span class='insight-strong'>Тревожные сигналы.</span> Усталость, туман в голове или нестабильный сон — это не норма, а сообщение от организма."},{icon:"🔍",text:"<span class='insight-strong'>Найдите причину.</span> Симптомы есть, но без оцифровки сложно понять — это дефицит, перегруз или что-то другое."},{icon:"⏱️",text:"<span class='insight-strong'>Время работает против.</span> На этой стадии восстановиться проще всего — пока компенсаторные механизмы ещё работают."}]},
+  { range:[18,30], title:"Ресурс истощён", desc:"Организм давно работает в режиме перегруза и недовосстановления. Это не слабость — это сигнал что пора остановиться и разобраться.", color:"#B83A2E", bg:"#FAEDED", insights:[{icon:"🔴",text:"<span class='insight-strong'>Перегруз очевиден.</span> Тело не отдыхает даже во сне — это значит что запасы ресурса на критическом уровне."},{icon:"🧩",text:"<span class='insight-strong'>Нужна система.</span> Хаотичные витамины и отдых не помогут — нужно понять где именно теряется энергия."},{icon:"💡",text:"<span class='insight-strong'>Хорошая новость.</span> При правильном подходе улучшения приходят быстро — когда знаешь куда смотреть."}]},
 ];
 
-let current = 0;
-let score = 0;
-let selected = null;
+let current = 0, score = 0, selected = null, finalScore = 0, finalResult = '';
 
 function startTest() {
   document.getElementById('intro').classList.remove('active');
@@ -989,60 +519,90 @@ function renderQuestion() {
   document.getElementById('qNum').textContent = `Вопрос ${String(current+1).padStart(2,'0')}`;
   document.getElementById('qText').textContent = q.text;
   document.getElementById('progressNum').textContent = `${current+1} / ${questions.length}`;
-  document.getElementById('progressFill').style.width = `${((current)/questions.length)*100}%`;
-
+  document.getElementById('progressFill').style.width = `${(current/questions.length)*100}%`;
   const optEl = document.getElementById('options');
   optEl.innerHTML = '';
   selected = null;
   document.getElementById('btnNext').classList.remove('visible');
-
-  q.options.forEach((opt, i) => {
+  q.options.forEach((opt) => {
     const div = document.createElement('div');
     div.className = 'option';
     div.innerHTML = `<div class="option-dot"></div><span>${opt.text}</span>`;
-    div.addEventListener('click', () => selectOption(div, opt.pts, i));
+    div.addEventListener('click', () => selectOption(div, opt.pts));
     optEl.appendChild(div);
   });
-
   document.querySelector('.test-body').classList.remove('fade-in');
   setTimeout(() => document.querySelector('.test-body').classList.add('fade-in'), 10);
 }
 
-function selectOption(el, pts, idx) {
+function selectOption(el, pts) {
   document.querySelectorAll('.option').forEach(o => o.classList.remove('selected'));
   el.classList.add('selected');
   selected = pts;
   const btn = document.getElementById('btnNext');
   btn.classList.add('visible');
-  if (current === questions.length - 1) btn.textContent = 'Узнать результат →';
-  else btn.textContent = 'Следующий вопрос →';
+  btn.textContent = current === questions.length - 1 ? 'Узнать результат →' : 'Следующий вопрос →';
 }
 
 function nextQuestion() {
   if (selected === null) return;
   score += selected;
   current++;
-  if (current >= questions.length) showResult();
-  else renderQuestion();
+  if (current >= questions.length) {
+    finalScore = score;
+    let res = results[0];
+    for (const r of results) {
+      if (finalScore >= r.range[0] && finalScore <= r.range[1]) { res = r; break; }
+    }
+    finalResult = res.title;
+    showContactModal();
+  } else {
+    renderQuestion();
+  }
+}
+
+function showContactModal() {
+  document.getElementById('contactModal').classList.add('active');
+}
+
+function submitContact() {
+  const name  = document.getElementById('mName').value.trim();
+  const phone = document.getElementById('mPhone').value.trim();
+  const city  = document.getElementById('mCity').value.trim();
+  sendData(name, phone, city);
+  document.getElementById('contactModal').classList.remove('active');
+  showResult();
+}
+
+function skipContact() {
+  sendData('', '', '');
+  document.getElementById('contactModal').classList.remove('active');
+  showResult();
+}
+
+function sendData(name, phone, city) {
+  try {
+    fetch(WEBHOOK_URL, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ name, phone, city, score: finalScore, result: finalResult })
+    });
+  } catch(e) {}
 }
 
 function showResult() {
   document.getElementById('test').classList.remove('active');
   document.getElementById('result').classList.add('active');
   document.getElementById('progressFill').style.width = '100%';
-
-  document.getElementById('resultScore').textContent = score;
-
+  document.getElementById('resultScore').textContent = finalScore;
   let res = results[0];
   for (const r of results) {
-    if (score >= r.range[0] && score <= r.range[1]) { res = r; break; }
+    if (finalScore >= r.range[0] && finalScore <= r.range[1]) { res = r; break; }
   }
-
   document.getElementById('resultTitle').textContent = res.title;
   document.getElementById('resultDesc').textContent = res.desc;
-
-  const ins = document.getElementById('resultInsights');
-  ins.innerHTML = res.insights.map(i => `
+  document.getElementById('resultInsights').innerHTML = res.insights.map(i => `
     <div class="insight-item">
       <div class="insight-icon" style="background:${res.bg}">${i.icon}</div>
       <div class="insight-text">${i.text}</div>
@@ -1053,11 +613,10 @@ function showResult() {
 function toggleCheck(el) { el.classList.toggle('checked'); }
 
 function restart() {
-  current = 0; score = 0; selected = null;
+  current = 0; score = 0; selected = null; finalScore = 0; finalResult = '';
   document.getElementById('result').classList.remove('active');
   document.getElementById('intro').classList.add('active');
 }
 </script>
 </body>
 </html>
-
